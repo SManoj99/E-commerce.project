@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Admin</title></head>
+<body>
+  <h1>Admin - Add Product</h1>
+  <form id="frm">
+    <input id="title" placeholder="Title"><br>
+    <input id="price" placeholder="Price" type="number"><br>
+    <textarea id="desc" placeholder="Description"></textarea><br>
+    <input id="stock" placeholder="Stock" type="number"><br>
+    <button>Add</button>
+  </form>
+  <script type="module">
+    const form = document.getElementById('frm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const token = 'ADMIN_TOKEN';
+      await fetch('http://localhost:5000/products', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body: JSON.stringify({
+          title: title.value,
+          price: Number(price.value),
+          description: desc.value,
+          stock: Number(stock.value)
+        })
+      });
+      alert('Added');
+    });
+  </script>
+</body>
+</html>
